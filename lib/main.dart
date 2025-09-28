@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/Screens/Favourite.dart';
-import 'package:safari_app/Screens/Home.dart';
+import 'package:safari_app/Screens/Categoies_screen.dart';
+import 'package:safari_app/Screens/Trips_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,10 +16,11 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   int _indexPage = 1;
-  List pages = [Favourite(), Home()];
+  List<Widget> pages = [Favourite(), Home()];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {'/trips': (context) => TripsScreen()},
       home: Scaffold(
         appBar: AppBar(
           title: Text(
