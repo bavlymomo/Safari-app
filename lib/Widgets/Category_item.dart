@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/App_data.dart';
-import './Category_item.dart';
+import 'package:safari_app/model/Trip.dart';
 
 class CategoryItem extends StatelessWidget {
   String source;
   String title;
   CategoryItem({super.key, required this.source, required this.title});
-
+  Trip t = Trips_data[1];
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -14,7 +14,14 @@ class CategoryItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           '/trips',
-          arguments: {'id': "t1", 'title': "Cairo trip" },
+          arguments: {
+            'id': t.id,
+            'title': t.title,
+            "imgUrl": t.imageUrl,
+            "duration": t.duration,
+            "season": t.season,
+            "act": t.activities,
+          },
         );
       },
       child: ClipRRect(
@@ -23,20 +30,13 @@ class CategoryItem extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             AspectRatio(
-              aspectRatio: 8 / 10,
+              aspectRatio: 22 / 25,
               child: Image.network(source, fit: BoxFit.cover),
             ),
             Positioned.fill(
               child: Container(color: const Color.fromARGB(91, 0, 0, 0)),
             ),
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-              ),
-            ),
+            Text(title, style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
       ),

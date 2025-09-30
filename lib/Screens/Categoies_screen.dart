@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../App_data.dart';
-import 'package:safari_app/App_data.dart';
-import '../model/Category_item.dart';
+import '../Widgets/Category_item.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,10 +14,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return GridView(
       // padding: EdgeInsets.all(10),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 7 / 8,
-        mainAxisSpacing: 5,
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+        childAspectRatio: 7.5 / 8,
       ),
       children: [
         ...Categories_data.map(
