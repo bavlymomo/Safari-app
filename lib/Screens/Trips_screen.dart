@@ -13,9 +13,10 @@ class TripsScreen extends StatelessWidget {
     List<Trip> custometrips = Trips_data.where(
       (trip) => trip.categories.any((cat) => cat == args['id']),
     ).toList();
-    // Trip mytrip = custometrips[1];
     return Scaffold(
-      appBar: AppBar(title: Text(args['title'])),
+      appBar: AppBar(
+        title: Text(args['title'], style: TextStyle(color: Colors.white)),
+      ),
       body: ListView(
         children: custometrips
             .map(
@@ -26,6 +27,7 @@ class TripsScreen extends StatelessWidget {
                 duration: mytrip.duration,
                 season: mytrip.season,
                 act: mytrip.activities,
+                programs: mytrip.program,
               ),
             )
             .toList(),

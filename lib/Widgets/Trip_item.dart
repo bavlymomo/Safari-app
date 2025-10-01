@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/model/Trip.dart';
 
-class TripItem extends StatefulWidget {
+class TripItem extends StatelessWidget {
   final List<String> cate;
   final String imageUrl;
   final String label;
   final int duration;
   final Season season;
   final List<String> act;
+  final List<String> programs;
 
   const TripItem({
     super.key,
@@ -17,20 +18,22 @@ class TripItem extends StatefulWidget {
     required this.duration,
     required this.season,
     required this.act,
+    required this.programs,
   });
 
-  @override
-  State<TripItem> createState() => _TripItemState();
-}
-
-class _TripItemState extends State<TripItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(
-          context,
-        ).pushNamed('/trip_dt', arguments: {'title': widget.label});
+        Navigator.of(context).pushNamed(
+          '/trip_dt',
+          arguments: {
+            'title': label,
+            'imgurl': imageUrl,
+            'act': act,
+            'prog': programs,
+          },
+        );
       },
       child: Card(
         elevation: 15,
@@ -38,7 +41,7 @@ class _TripItemState extends State<TripItem> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.network(widget.imageUrl, fit: BoxFit.cover),
+              child: Image.network(imageUrl, fit: BoxFit.cover),
             ),
             Positioned(
               bottom: 0,
@@ -70,19 +73,16 @@ class _TripItemState extends State<TripItem> {
                       Row(
                         children: [
                           Icon(Icons.calendar_month),
-                          Text("ايام ${widget.duration}"),
+                          Text("ايام $duration"),
                         ],
                       ),
                       Row(
-                        children: [
-                          Icon(Icons.sunny),
-                          Text(widget.season.toString()),
-                        ],
+                        children: [Icon(Icons.sunny), Text(season.toString())],
                       ),
                       Row(
                         children: [
                           Icon(Icons.access_time),
-                          Text(widget.act.first.toString()),
+                          Text(act.first.toString()),
                         ],
                       ),
                     ],
@@ -90,12 +90,11 @@ class _TripItemState extends State<TripItem> {
                 ),
               ),
             ),
-
             Positioned(
               right: 10,
               bottom: 50,
               child: Text(
-                widget.label,
+                label,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,

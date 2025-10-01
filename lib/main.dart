@@ -32,12 +32,32 @@ class MyAppState extends State<MyApp> {
         primarySwatch: Colors.brown,
         primaryColor: Colors.amberAccent,
         fontFamily: 'ElMessiri',
-        appBarTheme: AppBarTheme(backgroundColor: Colors.blue),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue,
+          centerTitle: true,
+          elevation: 12,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+          iconTheme: IconThemeData(
+            
+            color: Colors.white, // back arrow color
+            size: 22, // back arrow size
+          ),
+        ),
         brightness: Brightness.light,
         textTheme: TextTheme(
           bodySmall: TextStyle(
             fontSize: 25,
             color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+
+          headlineMedium: TextStyle(
+            fontSize: 25,
+            color: const Color.fromARGB(255, 5, 115, 205),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -48,10 +68,7 @@ class MyAppState extends State<MyApp> {
       },
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
-            _indexPage == 0 ? " التصنيفات" : "المفضلة",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+          title: Text(_indexPage == 0 ? " التصنيفات" : "المفضلة"),
           centerTitle: true,
           actions: [
             IconButton(
