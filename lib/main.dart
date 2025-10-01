@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/Screens/Favourite.dart';
 import 'package:safari_app/Screens/Categoies_screen.dart';
+import 'package:safari_app/Screens/Trip_details.dart';
 import 'package:safari_app/Screens/Trips_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  int _indexPage = 1;
+  int _indexPage = 0;
   List<Widget> pages = [Home(), Favourite()];
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,14 @@ class MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      routes: {'/trips': (context) => TripsScreen()},
+      routes: {
+        '/trips': (context) => TripsScreen(),
+        '/trip_dt': (context) => TripDetails(),
+      },
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            _indexPage == 0 ? "المفضلة" : " التصنيفات",
+            _indexPage == 0 ? " التصنيفات" : "المفضلة",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,

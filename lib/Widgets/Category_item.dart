@@ -5,8 +5,9 @@ import 'package:safari_app/model/Trip.dart';
 class CategoryItem extends StatelessWidget {
   String source;
   String title;
-  CategoryItem({super.key, required this.source, required this.title});
-  Trip t = Trips_data[1];
+  String id;
+  CategoryItem({super.key,required this.id, required this.source, required this.title});
+  
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -15,12 +16,8 @@ class CategoryItem extends StatelessWidget {
           context,
           '/trips',
           arguments: {
-            'id': t.id,
-            'title': t.title,
-            "imgUrl": t.imageUrl,
-            "duration": t.duration,
-            "season": t.season,
-            "act": t.activities,
+            'id' : id,
+            'title':title
           },
         );
       },

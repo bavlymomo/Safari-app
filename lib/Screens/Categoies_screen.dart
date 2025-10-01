@@ -20,7 +20,11 @@ class _HomeState extends State<Home> {
       ),
       children: [
         ...Categories_data.map(
-          (item) => CategoryItem(source: item.imageUrl, title: item.title),
+          (item) => CategoryItem(
+            source: item.imageUrl,
+            title: item.title,
+            id: item.id,
+          ),
         ),
       ],
     );
