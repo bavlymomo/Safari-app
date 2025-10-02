@@ -16,11 +16,18 @@ class TripsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(args['title'], style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: ListView(
         children: custometrips
             .map(
               (mytrip) => TripItem(
+                id: mytrip.id,
                 cate: mytrip.categories,
                 label: mytrip.title,
                 imageUrl: mytrip.imageUrl,

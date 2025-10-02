@@ -42,9 +42,8 @@ class MyAppState extends State<MyApp> {
             fontSize: 25,
           ),
           iconTheme: IconThemeData(
-            
-            color: Colors.white, // back arrow color
-            size: 22, // back arrow size
+            color: Colors.white, 
+            size: 22,
           ),
         ),
         brightness: Brightness.light,

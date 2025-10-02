@@ -9,9 +9,11 @@ class TripItem extends StatelessWidget {
   final Season season;
   final List<String> act;
   final List<String> programs;
+  final String id;
 
   const TripItem({
     super.key,
+    required this.id,
     required this.cate,
     required this.label,
     required this.imageUrl,
@@ -28,6 +30,7 @@ class TripItem extends StatelessWidget {
         Navigator.of(context).pushNamed(
           '/trip_dt',
           arguments: {
+            'id': id,
             'title': label,
             'imgurl': imageUrl,
             'act': act,

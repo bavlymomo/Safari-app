@@ -10,13 +10,13 @@ class TripDetails extends StatefulWidget {
 
 class _TripDetailsState extends State<TripDetails> {
   bool isclicked = false;
+
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     List<String> acts = args['act'];
     List<String> progs = args['prog'];
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(230, 255, 255, 255),
       floatingActionButton: FloatingActionButton(
@@ -24,13 +24,26 @@ class _TripDetailsState extends State<TripDetails> {
           setState(() {
             isclicked = !isclicked;
           });
+          if (isclicked) {
+            FavouriteTrips.ids.add(args['id']);
+          } else {
+            FavouriteTrips.ids.remove(args['id']);
+          }
         },
         elevation: 15,
         backgroundColor: Colors.amber,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: isclicked ? Icon(Icons.star) : Icon(Icons.star_border_outlined),
       ),
-      appBar: AppBar(title: Text(args['title'])),
+      appBar: AppBar(
+        title: Text(args['title']),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: ListView(
         children: [
           Padding(
@@ -125,4 +138,8 @@ class _TripDetailsState extends State<TripDetails> {
       ),
     );
   }
+}
+
+class FavouriteTrips {
+  static List<String> ids = [];
 }
