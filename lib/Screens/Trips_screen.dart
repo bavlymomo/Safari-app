@@ -24,6 +24,7 @@ class TripsScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
+        
         children: custometrips
             .map(
               (mytrip) => TripItem(

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:safari_app/model/Trip.dart';
 import 'model/Category.dart';
 

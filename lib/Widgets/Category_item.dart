@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/App_data.dart';
-import 'package:safari_app/model/Trip.dart';
 
 class CategoryItem extends StatelessWidget {
   String source;

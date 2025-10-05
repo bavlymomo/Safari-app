@@ -13,7 +13,7 @@ class Favourite extends StatefulWidget {
 class _FavouriteState extends State<Favourite> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children:
           Trips_data.where((trip) {
                 return FavouriteTrips.ids.any((id) => id == trip.id);

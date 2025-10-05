@@ -13,9 +13,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return GridView(
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-        childAspectRatio: 7.5 / 8,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 21 / 25,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
       ),
       children: [
         ...Categories_data.map(

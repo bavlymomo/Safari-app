@@ -31,4 +31,4 @@ class Trip {
 
 enum TripType { Exploration, Recovery, Activities, Therapy }
 
-enum Season { Winter, Summer, Spring }
+enum Season { Winter, Summer, Spring,Autumn }
