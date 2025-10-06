@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 import '../App_data.dart';
 import '../Widgets/Category_item.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView(

@@ -5,6 +5,7 @@ import 'package:safari_app/Screens/Filter.dart';
 import 'package:safari_app/Screens/Trip_details.dart';
 import 'package:safari_app/Screens/Trips_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:safari_app/Widgets/MainScreen.dart';
 import 'package:safari_app/Widgets/MyDrawer.dart';
 
 void main() {
@@ -19,8 +20,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  int _indexPage = 0;
-  List<Widget> pages = [Home(), Favourite()];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -57,37 +56,23 @@ class MyAppState extends State<MyApp> {
             color: const Color.fromARGB(255, 5, 115, 205),
             fontWeight: FontWeight.bold,
           ),
+          labelMedium: TextStyle(
+            fontFamily: null,
+            inherit: false,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
         iconTheme: IconThemeData(color: Colors.amber[500]),
       ),
       routes: {
+        '/main': (context) => Mainscreen(),
         '/trips': (context) => TripsScreen(),
         '/trip_dt': (context) => TripDetails(),
         '/filter': (context) => Filter(),
       },
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(_indexPage == 0 ? " التصنيفات" : "المفضلة"),
-          centerTitle: true,
-        ),
-        drawer: Drawer(child: Mydrawer()),
-        body: pages[_indexPage],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _indexPage,
-          backgroundColor: Colors.blue,
-          selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.white,
-          items: [
-            BottomNavigationBarItem(label: "التصنيفات", icon: Icon(Icons.list)),
-            BottomNavigationBarItem(label: "المفضلة", icon: Icon(Icons.star)),
-          ],
-          onTap: (value) {
-            setState(() {
-              _indexPage = value;
-            });
-          },
-        ),
-      ),
+      home: Mainscreen(),
     );
   }
 }

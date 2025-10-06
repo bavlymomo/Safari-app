@@ -15,18 +15,21 @@ class Mydrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Cate1("الرحلات", Icons.shopping_bag),
+            Cate1("الرحلات", Icons.shopping_bag, () {
+              Navigator.of(context).pushReplacementNamed('/main');
+            }),
             SizedBox(height: 5),
-            Cate1("تصفية", Icons.filter),
+            Cate1("تصفية", Icons.filter, () {
+              Navigator.of(context).pushReplacementNamed('/filter');
+            }),
           ],
         ),
       ),
     );
   }
 
-
   // ignore: non_constant_identifier_names
-  ListTile Cate1(String text, IconData icon) {
+  ListTile Cate1(String text, IconData icon, Function() where) {
     return ListTile(
       title: Text(
         text,
@@ -37,7 +40,7 @@ class Mydrawer extends StatelessWidget {
         ),
       ),
       leading: Icon(color: Colors.lightBlue, size: 20, icon),
-      onTap: () {},
+      onTap: where,
     );
   }
 }
