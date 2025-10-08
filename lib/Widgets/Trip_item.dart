@@ -10,6 +10,7 @@ class TripItem extends StatelessWidget {
   final List<String> act;
   final List<String> programs;
   final String id;
+  final Function deletedItem;
 
   const TripItem({
     super.key,
@@ -21,10 +22,10 @@ class TripItem extends StatelessWidget {
     required this.season,
     required this.act,
     required this.programs,
+    required this.deletedItem,
   });
 
   Map<String, Icon> chose() {
-    Icon sIcon;
     switch (season) {
       case Season.Winter:
         return {"شتاء": Icon(Icons.ac_unit)};
@@ -41,16 +42,21 @@ class TripItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          '/trip_dt',
-          arguments: {
-            'id': id,
-            'title': label,
-            'imgurl': imageUrl,
-            'act': act,
-            'prog': programs,
-          },
-        );
+        Navigator.of(context)
+            .pushNamed(
+              '/trip_dt',
+              arguments: {
+                'id': id,
+                'title': label,
+                'imgurl': imageUrl,
+                'act': act,
+                'prog': programs,
+              },
+            )
+            .then((val) {
+              print("Returned value: $val");
+              if (val != null) deletedItem(val);
+            });
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
@@ -103,7 +109,6 @@ class TripItem extends StatelessWidget {
                         ),
                         Row(
                           spacing: 7,
-
                           children: [
                             chose().values.first,
                             Text(chose().keys.first),

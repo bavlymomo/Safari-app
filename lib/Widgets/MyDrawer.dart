@@ -20,7 +20,7 @@ class Mydrawer extends StatelessWidget {
             }),
             SizedBox(height: 5),
             Cate1("تصفية", Icons.filter, () {
-              Navigator.of(context).pushReplacementNamed('/filter');
+              Navigator.of(context).pushNamed('/filter');
             }),
           ],
         ),

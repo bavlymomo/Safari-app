@@ -134,6 +134,15 @@ class _TripDetailsState extends State<TripDetails> {
             ),
           ),
           SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop(args['id']);
+            },
+            child: Text(
+              "Delete item ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
         ],
       ),
     );
