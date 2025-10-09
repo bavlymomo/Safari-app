@@ -4,7 +4,8 @@ import 'package:safari_app/model/Trip.dart';
 import '../App_data.dart';
 
 class TripsScreen extends StatefulWidget {
-  const TripsScreen({super.key});
+  List<Trip> availableTrips;
+  TripsScreen({required this.availableTrips});
 
   @override
   State<TripsScreen> createState() {
@@ -22,9 +23,9 @@ class _TripsScreenState extends State<TripsScreen> {
       final args =
           ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       title = args['title'];
-      custometrips = Trips_data.where(
-        (trip) => trip.categories.contains(args['id']),
-      ).toList();
+      custometrips = widget.availableTrips
+          .where((trip) => trip.categories.contains(args['id']))
+          .toList();
       isLoaded = true;
     }
     super.didChangeDependencies();

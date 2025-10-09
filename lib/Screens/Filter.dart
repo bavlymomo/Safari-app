@@ -1,58 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:safari_app/App_data.dart';
+import 'package:safari_app/Widgets/MyDrawer.dart';
 import 'package:safari_app/model/Trip.dart';
 
 class Filter extends StatefulWidget {
-  const Filter({super.key});
+  final Map<String, bool> currentValues;
+  final Function Savedvalues;
+  const Filter({
+    super.key,
+    required this.Savedvalues,
+    required this.currentValues,
+  });
 
   @override
   State<Filter> createState() => _FilterState();
 }
 
 class _FilterState extends State<Filter> {
-  bool isActive1 = false;
-  bool isActive2 = false;
-  bool isActive3 = false;
+  bool _summer = false;
+  bool _winter = false;
+  bool _family = false;
 
-  // Activity (bool val , bool isActive){
-  //   setState(() {
-  //     isActive =val
-  //   });
-  // }
-  // static List<Trip> SpecialTrips = Trips_data;
+  @override
+  void initState() {
+    _summer = widget.currentValues['summer']!;
+    _winter = widget.currentValues['winter']!;
+    _family = widget.currentValues['family']!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("بحث تصفية")),
+      drawer: Drawer(child: Mydrawer()),
+      appBar: AppBar(
+        title: const Text(" تصفية"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Map<String, bool> status = {
+                'summer': _summer,
+                'winter': _winter,
+                'family': _family,
+              };
+              widget.Savedvalues(status);
+              // Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.save),
+          ),
+        ],
+      ),
       body: Column(
         children: [
-          mySwitch("رحلات صيفية", "اظهر الرحلات الصيفية فقط ", isActive1, (
-            val,
-          ) {
+          mySwitch("رحلات صيفية", "اظهر الرحلات الصيفية فقط ", _summer, (val) {
             setState(() {
-              isActive1 = val;
+              _summer = val;
             });
-            Special.SpecialTrips = Trips_data.where(
-              (trip) => trip.isInSummer,
-            ).toList();
           }),
 
-          mySwitch("رحلات شتوية", "اظهر الرحلات الشتوية فقط ", isActive2, (
-            val,
-          ) {
+          mySwitch("رحلات شتوية", "اظهر الرحلات الشتوية فقط ", _winter, (val) {
             setState(() {
-              isActive2 = val;
+              _winter = val;
             });
             Special.SpecialTrips = Trips_data.where(
               (trip) => trip.isInWinter,
             ).toList();
           }),
 
-          mySwitch(" للعائلات", "ظهر الرحلات التي للعائلات فقط,", isActive3, (
+          mySwitch(" للعائلات", "ظهر الرحلات التي للعائلات فقط,", _family, (
             val,
           ) {
             setState(() {
-              isActive3 = val;
+              _family = val;
             });
             Special.SpecialTrips = Trips_data.where(
               (trip) => trip.isForFamilies,

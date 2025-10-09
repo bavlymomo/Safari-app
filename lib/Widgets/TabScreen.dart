@@ -35,7 +35,6 @@ class _MainscreenState extends State<Mainscreen> {
           setState(() {
             _indexPage = value;
           });
-          ;
         },
       ),
     );

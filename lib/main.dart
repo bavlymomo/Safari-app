@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/Screens/Favourite.dart';
-import 'package:safari_app/Screens/Categoies_screen.dart';
+import 'package:safari_app/App_data.dart';
 import 'package:safari_app/Screens/Filter.dart';
 import 'package:safari_app/Screens/Trip_details.dart';
 import 'package:safari_app/Screens/Trips_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:safari_app/Widgets/MainScreen.dart';
-import 'package:safari_app/Widgets/MyDrawer.dart';
+import 'package:safari_app/Widgets/TabScreen.dart';
+import 'package:safari_app/model/Trip.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,9 +19,31 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    "summer": false,
+    "winter": false,
+    "family": false,
+  };
+  List<Trip> _availableTrips = Trips_data;
 
+  changevalues(Map<String, bool> ChangedValues) {
+    setState(() {
+      _filters = ChangedValues;
+      _availableTrips = Trips_data.where((trip) {
+        if (_filters["summer"] == true && trip.isInSummer != true) {
+          return false;
+        }
+        if (_filters["winter"] == true && trip.isInWinter != true) {
+          return false;
+        }
+        if (_filters["family"] == true && trip.isForFamilies != true) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
 
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -70,12 +91,29 @@ class MyAppState extends State<MyApp> {
         ),
         iconTheme: IconThemeData(color: Colors.amber[500]),
       ),
-      routes: {
-        '/main': (context) => Mainscreen(),
-        '/trips': (context) => TripsScreen(),
-        '/trip_dt': (context) => TripDetails(),
-        '/filter': (context) => Filter(),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/main':
+            return MaterialPageRoute(builder: (context) => Mainscreen());
+          case '/trips':
+            return MaterialPageRoute(
+              builder: (context) =>
+                  TripsScreen(availableTrips: _availableTrips),
+              settings: settings,
+            );
+
+          case '/trip_dt':
+            return MaterialPageRoute(builder: (context) => TripDetails());
+          case '/filter':
+            return MaterialPageRoute(
+              builder: (context) =>
+                  Filter(Savedvalues: changevalues, currentValues: _filters),
+            );
+          default:
+            return null;
+        }
       },
+
       home: Mainscreen(),
     );
   }

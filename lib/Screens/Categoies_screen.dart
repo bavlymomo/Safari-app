@@ -3,6 +3,8 @@ import '../App_data.dart';
 import '../Widgets/Category_item.dart';
 
 class Home extends StatelessWidget {
+  const Home({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GridView(

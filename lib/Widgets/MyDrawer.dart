@@ -9,6 +9,7 @@ class Mydrawer extends StatelessWidget {
       appBar: AppBar(
         title: Text("دليلك السياحي", style: TextStyle(fontFamily: "ElMessiri")),
         backgroundColor: Colors.amber,
+        // leading: null,
       ),
       body: Align(
         alignment: Alignment.topRight,

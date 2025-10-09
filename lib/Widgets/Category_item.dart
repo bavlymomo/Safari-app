@@ -4,20 +4,21 @@ class CategoryItem extends StatelessWidget {
   String source;
   String title;
   String id;
-  CategoryItem({super.key,required this.id, required this.source, required this.title});
-  
+  CategoryItem({
+    super.key,
+    required this.id,
+    required this.source,
+    required this.title,
+  });
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.pushNamed(
+      
+        Navigator.of(
           context,
-          '/trips',
-          arguments: {
-            'id' : id,
-            'title':title
-          },
-        );
+        ).pushNamed('/trips', arguments: {'id': id, 'title': title});
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),

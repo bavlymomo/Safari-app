@@ -18,7 +18,7 @@ class _FavouriteState extends State<Favourite> {
 
   @override
   Widget build(BuildContext context) {
-    return FavTripsScreen.length == 0
+    return FavTripsScreen.isEmpty
         ? Align(
             widthFactor: 30,
             child: Text(
