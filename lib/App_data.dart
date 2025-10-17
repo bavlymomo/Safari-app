@@ -1,6 +1,8 @@
+
 import 'package:safari_app/model/Trip.dart';
 import 'model/Category.dart';
 
+// ignore: constant_identifier_names
 const Categories_data = [
   Category(
     id: 'c1',
