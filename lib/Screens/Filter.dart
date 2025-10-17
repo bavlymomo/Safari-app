@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:safari_app/app_data.dart';
 import 'package:safari_app/Widgets/MyDrawer.dart';
@@ -24,6 +25,7 @@ class _FilterState extends State<Filter> {
 
   @override
   void initState() {
+    super.initState();
     _summer = widget.currentValues['summer']!;
     _winter = widget.currentValues['winter']!;
     _family = widget.currentValues['family']!;

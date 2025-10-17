@@ -1,7 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:safari_app/Widgets/trip_item.dart';
 import 'package:safari_app/model/Trip.dart';
 
+// ignore: must_be_immutable
 class TripsScreen extends StatefulWidget {
   List<Trip> availableTrips;
   TripsScreen({super.key, required this.availableTrips});
@@ -55,10 +58,8 @@ class _TripsScreenState extends State<TripsScreen> {
                 act: mytrip.activities,
                 programs: mytrip.program,
                 deletedItem: (val) {
-                  print("Trying to delete $val");
                   setState(() {
                     custometrips.removeWhere((trip) {
-                      print("Checking ${trip.id}");
                       return trip.id == val;
                     });
                   });
