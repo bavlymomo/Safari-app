@@ -17,9 +17,9 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'    # or specify e.g. '3.10.5' or 'beta'
+          flutter-version: '3.19.0'
 
-      # Cache pub packages to speed up runs
+      # Cache pub packages to speed up runs (include Flutter version in the key)
       - name: Cache Pub
         uses: actions/cache@v4
         with:
@@ -27,12 +27,15 @@ jobs:
             ~/.pub-cache
             .flutter-plugins
             .dart_tool
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-pub-3.19.0-${{ hashFiles('**/pubspec.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pub-
+            ${{ runner.os }}-pub-3.19.0-
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Verify Flutter
+        run: flutter --version
 
       - name: Analyze project source
         run: flutter analyze
