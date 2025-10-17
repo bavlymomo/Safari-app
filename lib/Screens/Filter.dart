@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/App_data.dart';
+import 'package:safari_app/app_data.dart';
 import 'package:safari_app/Widgets/MyDrawer.dart';
 import 'package:safari_app/model/Trip.dart';
 
 class Filter extends StatefulWidget {
   final Map<String, bool> currentValues;
-  final Function Savedvalues;
+
+  final Function savedvalues;
   const Filter({
     super.key,
-    required this.Savedvalues,
+    required this.savedvalues,
     required this.currentValues,
   });
 
@@ -42,7 +43,30 @@ class _FilterState extends State<Filter> {
                 'winter': _winter,
                 'family': _family,
               };
-              widget.Savedvalues(status);
+              widget.savedvalues(status);
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text('هل انت متاكد '),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed('/main');
+                        },
+                        child: Text("نعم"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("لا"),
+                      ),
+                    ],
+                  );
+                },
+              );
+
               // Navigator.of(context).pop();
             },
             icon: Icon(Icons.save),
@@ -104,7 +128,7 @@ class _FilterState extends State<Filter> {
           onChanged: isActive,
           inactiveThumbColor: Colors.white,
           inactiveTrackColor: Colors.grey,
-          activeColor: Colors.blue,
+          activeThumbColor: Colors.blue,
         ),
       ),
     );

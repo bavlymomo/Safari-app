@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/App_data.dart';
-import 'package:safari_app/Screens/Trip_details.dart';
-import 'package:safari_app/Widgets/Trip_item.dart';
+import 'package:safari_app/app_data.dart';
+import 'package:safari_app/Screens/trip_details.dart';
+import 'package:safari_app/Widgets/trip_item.dart';
 import 'package:safari_app/model/Trip.dart';
 
 class Favourite extends StatefulWidget {
@@ -12,13 +12,13 @@ class Favourite extends StatefulWidget {
 }
 
 class _FavouriteState extends State<Favourite> {
-  List<Trip> FavTripsScreen = Trips_data.where((trip) {
+  List<Trip> favTripsScreen = Trips_data.where((trip) {
     return FavouriteTrips.ids.contains(trip.id);
   }).toList();
 
   @override
   Widget build(BuildContext context) {
-    return FavTripsScreen.isEmpty
+    return favTripsScreen.isEmpty
         ? Align(
             widthFactor: 30,
             child: Text(
@@ -32,7 +32,7 @@ class _FavouriteState extends State<Favourite> {
             ),
           )
         : ListView(
-            children: FavTripsScreen.map(
+            children: favTripsScreen.map(
               (mytrip) => TripItem(
                 id: mytrip.id,
                 cate: mytrip.categories,
@@ -43,7 +43,7 @@ class _FavouriteState extends State<Favourite> {
                 act: mytrip.activities,
                 programs: mytrip.program,
                 deletedItem: (val) {
-                  FavTripsScreen.remove(val);
+                  favTripsScreen.remove(val);
                 },
               ),
             ).toList(),

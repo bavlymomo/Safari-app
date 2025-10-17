@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class Trip {
   final String id;
@@ -29,6 +28,6 @@ class Trip {
   });
 }
 
-enum TripType { Exploration, Recovery, Activities, Therapy }
+enum TripType { exploration, recovery, activities, therapy }
 
-enum Season { Winter, Summer, Spring,Autumn }
+enum Season { winter, summer, spring, autumn }

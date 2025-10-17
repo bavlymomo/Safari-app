@@ -60,7 +60,6 @@ class _TripDetailsState extends State<TripDetails> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
-
           Container(
             padding: EdgeInsets.all(15),
             margin: EdgeInsets.symmetric(horizontal: 15),

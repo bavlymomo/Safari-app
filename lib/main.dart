@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/App_data.dart';
-import 'package:safari_app/Screens/Filter.dart';
-import 'package:safari_app/Screens/Trip_details.dart';
-import 'package:safari_app/Screens/Trips_screen.dart';
+import 'package:safari_app/app_data.dart';
+import 'package:safari_app/Screens/filter.dart';
+import 'package:safari_app/Screens/trip_details.dart';
+import 'package:safari_app/Screens/trips_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:safari_app/Widgets/TabScreen.dart';
+import 'package:safari_app/Widgets/tabScreen.dart';
 import 'package:safari_app/model/Trip.dart';
 
 void main() {
@@ -27,20 +27,24 @@ class MyAppState extends State<MyApp> {
   List<Trip> _availableTrips = Trips_data;
 
   changevalues(Map<String, bool> ChangedValues) {
+    final newFilters = ChangedValues;
+
+    final newTrips = Trips_data.where((trip) {
+      if (newFilters["summer"] == true && trip.isInSummer != true) {
+        return false;
+      }
+      if (newFilters["winter"] == true && trip.isInWinter != true) {
+        return false;
+      }
+      if (newFilters["family"] == true && trip.isForFamilies != true) {
+        return false;
+      }
+      return true;
+    }).toList();
+
     setState(() {
-      _filters = ChangedValues;
-      _availableTrips = Trips_data.where((trip) {
-        if (_filters["summer"] == true && trip.isInSummer != true) {
-          return false;
-        }
-        if (_filters["winter"] == true && trip.isInWinter != true) {
-          return false;
-        }
-        if (_filters["family"] == true && trip.isForFamilies != true) {
-          return false;
-        }
-        return true;
-      }).toList();
+      _filters = newFilters;
+      _availableTrips = newTrips;
     });
   }
 
@@ -103,11 +107,14 @@ class MyAppState extends State<MyApp> {
             );
 
           case '/trip_dt':
-            return MaterialPageRoute(builder: (context) => TripDetails());
+            return MaterialPageRoute(
+              builder: (context) => TripDetails(),
+              settings: settings,
+            );
           case '/filter':
             return MaterialPageRoute(
               builder: (context) =>
-                  Filter(Savedvalues: changevalues, currentValues: _filters),
+                  Filter(savedvalues: changevalues, currentValues: _filters),
             );
           default:
             return null;

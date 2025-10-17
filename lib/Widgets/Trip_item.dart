@@ -27,13 +27,13 @@ class TripItem extends StatelessWidget {
 
   Map<String, Icon> chose() {
     switch (season) {
-      case Season.Winter:
+      case Season.winter:
         return {"شتاء": Icon(Icons.ac_unit)};
-      case Season.Summer:
+      case Season.summer:
         return {"صيف": Icon(Icons.wb_sunny)};
-      case Season.Spring:
+      case Season.spring:
         return {"ربيع": Icon(Icons.local_florist)};
-      case Season.Autumn:
+      case Season.autumn:
         return {"خريف": Icon(Icons.eco)};
     }
   }

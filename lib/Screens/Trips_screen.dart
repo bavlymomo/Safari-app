@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:safari_app/Widgets/Trip_item.dart';
+import 'package:safari_app/Widgets/trip_item.dart';
 import 'package:safari_app/model/Trip.dart';
-import '../App_data.dart';
 
 class TripsScreen extends StatefulWidget {
   List<Trip> availableTrips;
-  TripsScreen({required this.availableTrips});
+  TripsScreen({super.key, required this.availableTrips});
 
   @override
   State<TripsScreen> createState() {
